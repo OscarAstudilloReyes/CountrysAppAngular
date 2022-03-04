@@ -1,0 +1,45 @@
+<div class="animate__animated animate__bounce">
+
+<h3>Buscar por region<small> {{regionActiva|titlecase}}</small></h3>
+
+<hr>
+
+<h3> Seleccione region</h3>
+
+
+<!-- establcer una clase por condicion -->
+<!--[class.btn-activo] = "region === regionActiva"  -->
+<!-- Otra opcion, es condiciones anidadas -->
+<!--  ngClass="  -->
+        <!-- {
+            'btn-primary': region === regionActiva,
+            'btn-outline-info': region !== regionActiva,
+        }
+     -->
+  
+
+<div class="row">
+    <div class="col">
+        <button 
+        *ngFor="let region of regiones"
+        [class] ="getClaseCSS(region)" 
+     
+        (click)="activarRegion(region)"
+        > 
+                {{region | titlecase}}
+        </button>
+    </div>
+
+    <div  *ngIf="hayError" class="alert alert-danger">
+        No se encontro nada con el termino {{regionActiva}}
+    </div>
+    
+    <div  *ngIf="paises.length > 0" class="row">
+        <div class="col">
+            <app-pais-tabla [paises]="paises"></app-pais-tabla>
+        </div>
+    </div>
+
+</div>
+
+</div>
